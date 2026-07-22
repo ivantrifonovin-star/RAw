@@ -1,0 +1,191 @@
+{
+  "burstObservatory" : {
+    "pingConfig" : {
+      "connectivity" : "",
+      "destination" : "http:\/\/www.gstatic.com\/generate_204",
+      "interval" : "1m",
+      "sampling" : 2,
+      "timeout" : "5s"
+    },
+    "subjectSelector" : [
+      "proxy"
+    ]
+  },
+  "dns" : {
+    "queryStrategy" : "UseIP",
+    "servers" : [
+      "8.8.8.8",
+      "1.1.1.1",
+      "1.0.0.1"
+    ]
+  },
+  "inbounds" : [
+    {
+      "listen" : "127.0.0.1",
+      "port" : 10808,
+      "protocol" : "socks",
+      "settings" : {
+        "auth" : "noauth",
+        "udp" : true
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "enabled" : true,
+        "routeOnly" : false
+      },
+      "tag" : "socks"
+    },
+    {
+      "listen" : "127.0.0.1",
+      "port" : 10809,
+      "protocol" : "http",
+      "settings" : {
+        "allowTransparent" : false
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "enabled" : true,
+        "routeOnly" : false
+      },
+      "tag" : "http"
+    }
+  ],
+  "log" : {
+    "access" : "\/private\/var\/mobile\/Containers\/Shared\/AppGroup\/3D4BE13E-A86F-4B84-BACB-2200AFA65649\/Library\/Application Support\/Xray\/logs\/access.log",
+    "dnsLog" : true,
+    "loglevel" : "Warning"
+  },
+  "outbounds" : [
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "46.16.36.64",
+            "port" : 443,
+            "users" : [
+              {
+                "encryption" : "none",
+                "flow" : "xtls-rprx-vision",
+                "id" : "e1cf46a3-bcbf-400e-9169-1b1d7f7e592c"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "yCKV2xr725jI0sFhm4KbttKl8b9UZrnQTXxZLN2S4BM",
+          "serverName" : "fitauto.ru",
+          "shortId" : "2e9f16cc"
+        },
+        "security" : "reality",
+        "tcpSettings" : {
+
+        }
+      },
+      "tag" : "proxy"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "46.16.36.64",
+            "port" : 30443,
+            "users" : [
+              {
+                "encryption" : "none",
+                "flow" : "",
+                "id" : "e1cf46a3-bcbf-400e-9169-1b1d7f7e592c"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "grpcSettings" : {
+          "authority" : "",
+          "mode" : true,
+          "serviceName" : "grpc"
+        },
+        "network" : "grpc",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "gKGSr5r5mfEp6Fn8bnkIAngj6xehLoOKV2D-17SSPgY",
+          "serverName" : "fitauto.ru",
+          "shortId" : "149f82441e"
+        },
+        "security" : "reality"
+      },
+      "tag" : "proxy-2"
+    },
+    {
+      "protocol" : "freedom",
+      "tag" : "direct"
+    },
+    {
+      "protocol" : "blackhole",
+      "tag" : "block"
+    }
+  ],
+  "remarks" : "🇫🇮 Финляндия | Улучшенный 🚀",
+  "routing" : {
+    "balancers" : [
+      {
+        "fallbackTag" : "direct",
+        "selector" : [
+          "proxy"
+        ],
+        "strategy" : {
+          "settings" : {
+            "baselines" : [
+              "1s",
+              "2s",
+              "3s"
+            ],
+            "expected" : 1,
+            "maxRTT" : "2s",
+            "tolerance" : 0.01
+          },
+          "type" : "leastPing"
+        },
+        "tag" : "balancer"
+      }
+    ],
+    "domainMatcher" : "hybrid",
+    "domainStrategy" : "IPIfNonMatch",
+    "rules" : [
+      {
+        "outboundTag" : "direct",
+        "protocol" : [
+          "bittorrent"
+        ],
+        "type" : "field"
+      },
+      {
+        "domain" : [
+          "geosite:category-ru",
+          "domain:avito.st"
+        ],
+        "outboundTag" : "direct",
+        "type" : "field"
+      },
+      {
+      "balancerTag" : "balancer",
+        "network" : "tcp,udp",
+        "type" : "field"
+      }
+    ]
+  }
+}
