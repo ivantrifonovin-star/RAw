@@ -1,0 +1,321 @@
+{
+  "dns" : {
+    "queryStrategy" : "UseIP",
+    "servers" : [
+      "8.8.8.8",
+      "1.1.1.1",
+      "1.0.0.1"
+    ]
+  },
+  "inbounds" : [
+    {
+      "listen" : "127.0.0.1",
+      "port" : 10808,
+      "protocol" : "socks",
+      "settings" : {
+        "auth" : "noauth",
+        "udp" : true
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "enabled" : true,
+        "routeOnly" : false
+      },
+      "tag" : "socks"
+    },
+    {
+      "listen" : "127.0.0.1",
+      "port" : 10809,
+      "protocol" : "http",
+      "settings" : {
+        "allowTransparent" : false
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "enabled" : true,
+        "routeOnly" : false
+      },
+      "tag" : "http"
+    }
+  ],
+  "log" : {
+    "access" : "\/private\/var\/mobile\/Containers\/Shared\/AppGroup\/3D4BE13E-A86F-4B84-BACB-2200AFA65649\/Library\/Application Support\/Xray\/logs\/access.log",
+    "dnsLog" : true,
+    "loglevel" : "Warning"
+  },
+  "observatory" : {
+    "enableConcurrency" : true,
+    "probeInterval" : "2m",
+    "probeUrl" : "http:\/\/www.gstatic.com\/generate_204",
+    "subjectSelector" : [
+      "proxy"
+    ]
+  },
+  "outbounds" : [
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "144.31.242.56",
+            "port" : 40443,
+            "users" : [
+              {
+                "encryption" : "none",
+                "flow" : "xtls-rprx-vision",
+                "id" : "e1cf46a3-bcbf-0457-9169-1b1d7f7e592c"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "realitySettings" : {
+          "fingerprint" : "qq",
+          "publicKey" : "p5GN5cUF-1qiUUrT8OzfV9txQVQetVNst5okocmHulA",
+          "serverName" : "www.forbes.ru",
+          "shortId" : "149f82441e"
+        },
+        "security" : "reality",
+        "tcpSettings" : {
+
+        }
+      },
+      "tag" : "proxy"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "144.31.242.56",
+            "port" : 30443,
+            "users" : [
+              {
+                "encryption" : "none",
+                "flow" : "",
+                "id" : "e1cf46a3-bcbf-0457-9169-1b1d7f7e592c"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "grpcSettings" : {
+          "authority" : "",
+          "mode" : true,
+          "serviceName" : "grpc"
+        },
+        "network" : "grpc",
+        "realitySettings" : {
+          "fingerprint" : "qq",
+          "publicKey" : "p5GN5cUF-1qiUUrT8OzfV9txQVQetVNst5okocmHulA",
+          "serverName" : "www.forbes.ru"
+        },
+        "security" : "reality"
+      },
+      "tag" : "proxy-2"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "mo4ms.dm.myfreedom.rest",
+            "port" : 443,
+            "users" : [
+              {
+                "encryption" : "mlkem768x25519plus.native.0rtt.9AEu0z4Tm7FCCp-BSUB17apFVAhVMkmYv8yVfFIhhBY",
+                "flow" : "xtls-rprx-vision",
+                "id" : "e1cf46a3-bcbf-0457-9169-1b1d7f7e592c"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "security" : "tls",
+        "tcpSettings" : {
+          "header" : {
+            "type" : "none"
+          }
+        },
+        "tlsSettings" : {
+          "alpn" : [
+            "h2",
+            "http\/1.1"
+          ],
+          "fingerprint" : "qq",
+          "serverName" : "mo4ms.dm.myfreedom.rest"
+        }
+      },
+      "tag" : "proxy-3"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "144.31.242.57",
+            "port" : 40443,
+            "users" : [
+              {
+                "encryption" : "none",
+                "flow" : "xtls-rprx-vision","id" : "e1cf46a3-bcbf-0457-9169-1b1d7f7e592c"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "ucyW-dTJ09D7wwxDMfdKUz-O1wVdbcR4djNGo3DmRFg",
+          "serverName" : "www.forbes.ru",
+          "shortId" : "149f82441e"
+        },
+        "security" : "reality",
+        "tcpSettings" : {
+
+        }
+      },
+      "tag" : "proxy-4"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "144.31.242.57",
+            "port" : 30443,
+            "users" : [
+              {
+                "encryption" : "none",
+                "flow" : "",
+                "id" : "e1cf46a3-bcbf-0457-9169-1b1d7f7e592c"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "grpcSettings" : {
+          "authority" : "",
+          "mode" : true,
+          "serviceName" : "grpc"
+        },
+        "network" : "grpc",
+        "realitySettings" : {
+          "fingerprint" : "qq",
+          "publicKey" : "ucyW-dTJ09D7wwxDMfdKUz-O1wVdbcR4djNGo3DmRFg",
+          "serverName" : "www.forbes.ru",
+          "shortId" : "76dff0ccda"
+        },
+        "security" : "reality"
+      },
+      "tag" : "proxy-5"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "m2jy0.dm.myfreedom.rest",
+            "port" : 443,
+            "users" : [
+              {
+                "encryption" : "mlkem768x25519plus.native.0rtt.X82F_xhmS0TaTEhIKVCMQsCb6UupwKoOUvWHY8005S0",
+                "flow" : "xtls-rprx-vision",
+                "id" : "e1cf46a3-bcbf-0457-9169-1b1d7f7e592c"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "security" : "tls",
+        "tcpSettings" : {
+          "header" : {
+            "type" : "none"
+          }
+        },
+        "tlsSettings" : {
+          "alpn" : [
+            "h2",
+            "http\/1.1"
+          ],
+          "fingerprint" : "qq",
+          "serverName" : "m2jy0.dm.myfreedom.rest"
+        }
+      },
+      "tag" : "proxy-6"
+    },
+    {
+      "protocol" : "freedom",
+      "tag" : "direct"
+    },
+    {
+      "protocol" : "blackhole",
+      "tag" : "block"
+    }
+  ],
+  "remarks" : "🇩🇰 Дания | Улучшенный 🚀",
+  "routing" : {
+    "balancers" : [
+      {
+        "fallbackTag" : "direct",
+        "selector" : [
+          "proxy"
+        ],
+        "strategy" : {
+          "settings" : {
+            "baselines" : [
+              "1s"
+            ],
+            "expected" : 1,
+            "maxRTT" : "1s",
+            "tolerance" : 0.01
+          },
+          "type" : "leastLoad"
+        },
+        "tag" : "balancer"
+      }
+    ],
+    "domainMatcher" : "hybrid",
+    "domainStrategy" : "IPIfNonMatch",
+    "rules" : [
+      {
+        "outboundTag" : "direct",
+        "protocol" : [
+          "bittorrent"
+        ],
+        "type" : "field"
+      },
+      {
+        "domain" : [
+          "geosite:category-ru",
+          "domain:avito.st"
+        ],
+        "outboundTag" : "direct",
+        "type" : "field"
+      },
+      {
+        "balancerTag" : "balancer",
+        "network" : "tcp,udp",
+        "type" : "field"
+      }
+    ]
+  }
+}
