@@ -627,3 +627,632 @@
     ]
   }
 }
+[09.08.2026 20:41] Кирилл: {
+  "burstObservatory" : {
+    "pingConfig" : {
+      "connectivity" : "https:\/\/connectivitycheck.gstatic.com\/generate_204",
+      "destination" : "https:\/\/connectivitycheck.gstatic.com\/generate_204",
+      "httpMethod" : "GET",
+      "interval" : "60s",
+      "sampling" : 3,
+      "timeout" : "10s"
+    },
+    "subjectSelector" : [
+      "180_russia_vless-tcp-relay:2",
+      "113_russia_vless-tcp-relay:3",
+      "113_russia_vless-xhttp-relay:3",
+      "113_russia_trojan-relay:3",
+      "113_russia_vless-grpc",
+      "180_russia_vless-xhttp-relay:2",
+      "180_russia_trojan-relay:2",
+      "180_russia_vless-grpc",
+      "101_russia_vless-tcp-relay:2",
+      "101_russia_vless-xhttp-relay:2",
+      "101_russia_trojan-relay:2",
+      "101_russia_vless-grpc"
+    ]
+  },
+  "dns" : {
+    "queryStrategy" : "UseIPv4",
+    "servers" : [
+      {
+        "address" : "https+local:\/\/77.88.8.8\/dns-query",
+        "domains" : [
+          "regexp:.*\\.ru$",
+          "regexp:.*\\.su$"
+        ],
+        "queryStrategy" : "UseIPv4"
+      },
+      {
+        "address" : "https+local:\/\/1.1.1.1\/dns-query",
+        "queryStrategy" : "UseIPv4"
+      }
+    ]
+  },
+  "inbounds" : [
+    {
+      "listen" : "127.0.0.1",
+      "port" : 10808,
+      "protocol" : "socks",
+      "settings" : {
+        "auth" : "noauth",
+        "udp" : true
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "enabled" : true,
+        "routeOnly" : true
+      },
+      "tag" : "socks"
+    },
+    {
+      "listen" : "127.0.0.1",
+      "port" : 10809,
+      "protocol" : "http",
+      "settings" : {
+        "allowTransparent" : false
+      },
+      "sniffing" : {
+        "destOverride" : [
+          "http",
+          "tls",
+          "quic"
+        ],
+        "enabled" : true,
+        "routeOnly" : true
+      },
+      "tag" : "http"
+    },
+    {
+      "listen" : "127.0.0.1",
+      "port" : 0,
+      "protocol" : "dokodemo-door",
+      "settings" : {
+        "address" : "127.0.0.1",
+        "network" : "tcp,udp"
+      },
+      "tag" : "lo-in-1"
+    },
+    {
+      "listen" : "127.0.0.1",
+      "port" : 0,
+      "protocol" : "dokodemo-door",
+      "settings" : {
+        "address" : "127.0.0.1",
+        "network" : "tcp,udp"
+      },
+      "tag" : "lo-in-2"
+    }
+  ],
+  "log" : {
+    "access" : "\/private\/var\/mobile\/Containers\/Shared\/AppGroup\/3D4BE13E-A86F-4B84-BACB-2200AFA65649\/Library\/Application Support\/Xray\/logs\/access.log",
+    "dnsLog" : true,
+    "loglevel" : "Warning"
+  },
+  "outbounds" : [
+    {
+      "protocol" : "freedom",
+      "tag" : "direct"
+    },
+    {
+      "protocol" : "blackhole",
+      "tag" : "block"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "46.8.208.47",
+            "port" : 446,
+            "users" : [
+              {
+                "encryption" : "none",
+                "flow" : "xtls-rprx-vision",
+                "id" : "ce793511-f73c-40e2-a6fc-00eec4865731"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "cC9NE-eJOyOKlXIjZakdwk7KDBKhUktgZssWki68eB0",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality"
+      },
+      "tag" : "180_russia_vless-tcp-relay:2"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "46.8.208.47",
+            "port" : 8445,
+            "users" : [
+              {
+                "encryption" : "none",
+                "id" : "ce793511-f73c-40e2-a6fc-00eec4865731"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "xhttp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "cC9NE-eJOyOKlXIjZakdwk7KDBKhUktgZssWki68eB0",
+          "serverName" : "ads.x5.ru",
+[09.08.2026 20:41] Кирилл: "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality",
+        "xhttpSettings" : {
+          "mode" : "stream-one",
+          "path" : "\/a7f9d2c8"
+        }
+      },
+      "tag" : "180_russia_vless-xhttp-relay:2"
+    },
+    {
+      "protocol" : "trojan",
+      "settings" : {
+        "servers" : [
+          {
+            "address" : "46.8.208.47",
+            "password" : "ce793511-f73c-40e2-a6fc-00eec4865731",
+            "port" : 2085
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "cC9NE-eJOyOKlXIjZakdwk7KDBKhUktgZssWki68eB0",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality"
+      },
+      "tag" : "180_russia_trojan-relay:2"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "46.8.208.47",
+            "port" : 2087,
+            "users" : [
+              {
+                "encryption" : "none",
+                "id" : "ce793511-f73c-40e2-a6fc-00eec4865731"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "grpcSettings" : {
+          "serviceName" : "grpc"
+        },
+        "network" : "grpc",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "cC9NE-eJOyOKlXIjZakdwk7KDBKhUktgZssWki68eB0",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality"
+      },
+      "tag" : "180_russia_vless-grpc"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "46.182.24.50",
+            "port" : 447,
+            "users" : [
+              {
+                "encryption" : "none",
+                "flow" : "xtls-rprx-vision",
+                "id" : "69b7a186-088c-4726-847a-2827b4b06abf"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "k7bOaMWpjIndkyWDw3WgzWTlE9mSYYbrvNDzdr0Nuwc",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality"
+      },
+      "tag" : "113_russia_vless-tcp-relay:3"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "46.182.24.50",
+            "port" : 8446,
+            "users" : [
+              {
+                "encryption" : "none",
+                "id" : "69b7a186-088c-4726-847a-2827b4b06abf"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "xhttp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "k7bOaMWpjIndkyWDw3WgzWTlE9mSYYbrvNDzdr0Nuwc",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality",
+        "xhttpSettings" : {
+          "mode" : "stream-one",
+          "path" : "\/a7f9d2c8"
+        }
+      },
+      "tag" : "113_russia_vless-xhttp-relay:3"
+    },
+    {
+      "protocol" : "trojan",
+      "settings" : {
+        "servers" : [
+          {
+            "address" : "46.182.24.50",
+            "password" : "69b7a186-088c-4726-847a-2827b4b06abf",
+            "port" : 2086
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "k7bOaMWpjIndkyWDw3WgzWTlE9mSYYbrvNDzdr0Nuwc",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality"
+      },
+      "tag" : "113_russia_trojan-relay:3"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "46.182.24.50",
+            "port" : 2087,
+            "users" : [
+              {
+[09.08.2026 20:41] Кирилл: "encryption" : "none",
+                "id" : "69b7a186-088c-4726-847a-2827b4b06abf"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "grpcSettings" : {
+          "serviceName" : "grpc"
+        },
+        "network" : "grpc",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "k7bOaMWpjIndkyWDw3WgzWTlE9mSYYbrvNDzdr0Nuwc",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality"
+      },
+      "tag" : "113_russia_vless-grpc"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "5.188.114.218",
+            "port" : 446,
+            "users" : [
+              {
+                "encryption" : "none",
+                "flow" : "xtls-rprx-vision",
+                "id" : "0880ea4d-1b17-4080-8a2a-e9ae1358840b"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "Udoye8Z0T3Zr1wf6jxCNpslMTpRBsoMEsr_6_TB49QM",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality"
+      },
+      "tag" : "101_russia_vless-tcp-relay:2"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "5.188.114.218",
+            "port" : 8445,
+            "users" : [
+              {
+                "encryption" : "none",
+                "id" : "0880ea4d-1b17-4080-8a2a-e9ae1358840b"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "xhttp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "Udoye8Z0T3Zr1wf6jxCNpslMTpRBsoMEsr_6_TB49QM",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality",
+        "xhttpSettings" : {
+          "mode" : "stream-one",
+          "path" : "\/a7f9d2c8"
+        }
+      },
+      "tag" : "101_russia_vless-xhttp-relay:2"
+    },
+    {
+      "protocol" : "trojan",
+      "settings" : {
+        "servers" : [
+          {
+            "address" : "5.188.114.218",
+            "password" : "0880ea4d-1b17-4080-8a2a-e9ae1358840b",
+            "port" : 2085
+          }
+        ]
+      },
+      "streamSettings" : {
+        "network" : "tcp",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "Udoye8Z0T3Zr1wf6jxCNpslMTpRBsoMEsr_6_TB49QM",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality"
+      },
+      "tag" : "101_russia_trojan-relay:2"
+    },
+    {
+      "protocol" : "vless",
+      "settings" : {
+        "vnext" : [
+          {
+            "address" : "5.188.114.218",
+            "port" : 2087,
+            "users" : [
+              {
+                "encryption" : "none",
+                "id" : "0880ea4d-1b17-4080-8a2a-e9ae1358840b"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings" : {
+        "grpcSettings" : {
+          "serviceName" : "grpc"
+        },
+        "network" : "grpc",
+        "realitySettings" : {
+          "fingerprint" : "firefox",
+          "publicKey" : "Udoye8Z0T3Zr1wf6jxCNpslMTpRBsoMEsr_6_TB49QM",
+          "serverName" : "ads.x5.ru",
+          "shortId" : "c226283c4de5b1ad"
+        },
+        "security" : "reality"
+      },
+      "tag" : "101_russia_vless-grpc"
+    },
+    {
+      "protocol" : "loopback",
+      "settings" : {
+        "inboundTag" : "lo-in-1"
+      },
+      "tag" : "lo-out-1"
+    },
+    {
+      "protocol" : "loopback",
+      "settings" : {
+        "inboundTag" : "lo-in-2"
+      },
+      "tag" : "lo-out-2"
+    }
+  ],
+  "remarks" : "🌩 Белые списки | 🇫🇮 Финляндия",
+  "routing" : {
+    "balancers" : [
+      {
+        "fallbackTag" : "lo-out-1",
+        "selector" : [
+[09.08.2026 20:41] Кирилл: "180_russia_vless-tcp-relay:2"
+        ],
+        "strategy" : {
+          "type" : "random"
+        },
+        "tag" : "primary"
+      },
+      {
+        "fallbackTag" : "lo-out-2",
+        "selector" : [
+          "113_russia_vless-tcp-relay:3",
+          "113_russia_vless-xhttp-relay:3",
+          "113_russia_trojan-relay:3"
+        ],
+        "strategy" : {
+          "type" : "random"
+        },
+        "tag" : "tier1"
+      },
+      {
+        "selector" : [
+          "113_russia_vless-grpc",
+          "180_russia_vless-xhttp-relay:2",
+          "180_russia_trojan-relay:2",
+          "180_russia_vless-grpc",
+          "101_russia_vless-tcp-relay:2",
+          "101_russia_vless-xhttp-relay:2",
+          "101_russia_trojan-relay:2",
+          "101_russia_vless-grpc"
+        ],
+        "strategy" : {
+          "type" : "random"
+        },
+        "tag" : "tier2"
+      }
+    ],
+    "domainStrategy" : "IPIfNonMatch",
+    "rules" : [
+      {
+        "network" : "udp",
+        "outboundTag" : "block",
+        "port" : "443",
+        "type" : "field"
+      },
+      {
+        "outboundTag" : "block",
+        "protocol" : [
+          "bittorrent"
+        ],
+        "type" : "field"
+      },
+      {
+        "ip" : [
+          "127.0.0.0\/8",
+          "10.0.0.0\/8",
+          "172.16.0.0\/12",
+          "192.168.0.0\/16",
+          "169.254.0.0\/16",
+          "::1\/128",
+          "fc00::\/7",
+          "fe80::\/10"
+        ],
+        "outboundTag" : "direct",
+        "type" : "field"
+      },
+      {
+        "domain" : [
+          "localhost",
+          "*.local",
+          "*.localdomain",
+          "*.lan",
+          "*.internal"
+        ],
+        "outboundTag" : "direct",
+        "type" : "field"
+      },
+      {
+        "domain" : [
+          "domain:ru",
+          "domain:su",
+          "domain:xn--p1ai",
+          "domain:vk.com",
+          "domain:vk.me",
+          "domain:userapi.com",
+          "domain:vkuservideo.net",
+          "domain:vkuseraudio.net",
+          "domain:vk-cdn.net",
+          "domain:mycdn.me",
+          "domain:okcdn.ru",
+          "domain:imgsmail.ru",
+          "domain:yandex.net",
+          "domain:yandex.com",
+          "domain:yastatic.net",
+          "domain:yandexcloud.net",
+          "domain:yadisk.net",
+          "domain:sberbank.com",
+          "domain:alfabank.com",
+          "domain:tcsbank.com",
+          "domain:ngenix.net",
+          "domain:cdnvideo.com",
+          "domain:wbbasket.ru",
+          "domain:wbwh.tech",
+          "domain:o3.ru",
+          "domain:ecom.tech",
+          "domain:habr.com",
+          "domain:2gis.com",
+          "domain:my.games",
+          "domain:4pda.to",
+          "domain:avito.st"
+        ],
+        "outboundTag" : "direct",
+        "type" : "field"
+      },
+      {
+        "ip" : [
+          "5.45.192.0\/18",
+          "5.255.192.0\/18",
+          "77.88.0.0\/18",
+          "87.250.224.0\/19",
+          "93.158.128.0\/18",
+          "95.108.128.0\/17",
+          "213.180.192.0\/19"
+        ],
+        "outboundTag" : "direct",
+        "type" : "field"
+      },
+      {
+        "balancerTag" : "tier1",
+        "inboundTag" : [
+          "lo-in-1"
+        ],
+        "type" : "field"
+      },
+      {
+        "balancerTag" : "tier2",
+        "inboundTag" : [
+          "lo-in-2"
+        ],
+        "type" : "field"
+      },
+      {
+        "balancerTag" : "primary",
+        "network" : "tcp,udp",
+        "type" : "field"
+      }
+    ]
+  }
+}
