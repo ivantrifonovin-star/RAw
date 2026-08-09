@@ -163,8 +163,7 @@
         "realitySettings" : {
           "fingerprint" : "firefox",
           "publicKey" : "cC9NE-eJOyOKlXIjZakdwk7KDBKhUktgZssWki68eB0",
-          "serverName" : "ads.x5.ru",
-[09.08.2026 20:41] Кирилл: "shortId" : "c226283c4de5b1ad"
+          "serverName" : "ads.x5.ru","shortId" : "c226283c4de5b1ad"
         },
         "security" : "reality",
         "xhttpSettings" : {
@@ -320,8 +319,7 @@
             "address" : "46.182.24.50",
             "port" : 2087,
             "users" : [
-              {
-[09.08.2026 20:41] Кирилл: "encryption" : "none",
+              {"encryption" : "none",
                 "id" : "69b7a186-088c-4726-847a-2827b4b06abf"
               }
             ]
@@ -478,8 +476,7 @@
     "balancers" : [
       {
         "fallbackTag" : "lo-out-1",
-        "selector" : [
-[09.08.2026 20:41] Кирилл: "180_russia_vless-tcp-relay:2"
+        "selector" : ["180_russia_vless-tcp-relay:2"
         ],
         "strategy" : {
           "type" : "random"
